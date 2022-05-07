@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
   Tag.create({
     tag_name: req.body.tag_name
   })
-  .then((tag_name) => res.status(200).json(tag_name))
+    .then((tag_name) => res.status(200).json(tag_name))
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
@@ -62,6 +62,11 @@ router.put('/:id', (req, res) => {
         id: req.params.id
       }
     })
+    .then((tag_name) => res.status(200).json(tag_name))
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    })
 })
 
 router.delete('/:id', (req, res) => {
@@ -71,17 +76,17 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
-  .then(dbUserData => {
-    if (!dbUserData) {
-      res.status(404).json({ message: 'No tag found with this id' });
-      return;
-    }
-    res.json(dbUserData);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  })
+    .then(dbUserData => {
+      if (!dbUserData) {
+        res.status(404).json({ message: 'No tag found with this id' });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    })
 })
 
 module.exports = router;

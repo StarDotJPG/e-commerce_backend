@@ -49,7 +49,7 @@ router.post('/', (req, res) => {
       console.log(err);
       res.status(400).json(err);
     })
-});
+})
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
@@ -61,7 +61,12 @@ router.put('/:id', (req, res) => {
         id: req.params.id
       }
     })
-});
+    .then((category_name) => res.status(200).json(category_name))
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    })
+})
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
